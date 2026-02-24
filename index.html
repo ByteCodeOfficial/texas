@@ -2,17 +2,22 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Техас · эстетика одинокой звезды</title>
-  <!-- Bootstrap 5 + icons + fonts + aos + swiper -->
+  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- AOS CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   <style>
+    /* Глобальные настройки и адаптивность */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: #faf6f0;
@@ -20,16 +25,19 @@
       color: #1a2a3a;
       overflow-x: hidden;
       width: 100%;
+      position: relative;
     }
     h1, h2, h3, h4 {
       font-family: 'Playfair Display', serif;
       font-weight: 600;
       letter-spacing: -0.02em;
+      word-wrap: break-word;
     }
     .text-texas-red { color: #bf2e1c; }
     .bg-texas-red { background-color: #bf2e1c; }
     .text-texas-blue { color: #1f4b7a; }
     .bg-texas-blue { background-color: #1f4b7a; }
+    .text-texas-sand { color: #e8d5b5; }
     .bg-texas-sand { background-color: #f3e9d2; }
 
     /* современная hero с градиентом и паттерном */
@@ -61,16 +69,13 @@
       pointer-events: none;
       z-index: 0;
     }
-
-    /* адаптивный hero текст */
-    .hero-modern h1 {
-      font-size: clamp(3rem, 15vw, 7rem);
-      word-break: break-word;
-    }
-    
-    .hero-modern .badge {
-      font-size: clamp(0.8rem, 4vw, 1rem);
-      padding: 0.75rem 1.5rem !important;
+    @media (max-width: 768px) {
+      .hero-modern {
+        min-height: 90vh;
+      }
+      .hero-modern .display-1 {
+        font-size: 3.5rem !important;
+      }
     }
 
     /* карточки-коллажи кликабельные */
@@ -84,7 +89,7 @@
       cursor: pointer;
     }
     .collage-card:hover {
-      transform: translateY(-16px) scale(1.02);
+      transform: translateY(-10px) scale(1.02);
       box-shadow: 0 40px 70px -20px #bf2e1c80;
     }
     .collage-img {
@@ -93,30 +98,26 @@
       object-fit: cover;
       transition: transform 0.8s;
     }
+    @media (max-width: 576px) {
+      .collage-img {
+        height: 200px;
+      }
+    }
     .collage-card:hover .collage-img { transform: scale(1.08); }
     .card-content { padding: 1.8rem 1.5rem 2rem; }
 
-    /* адаптивная сетка для фотографий */
+    /* сетка для фотографий */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
+      gap: 1.5rem;
     }
-    
-    @media (max-width: 992px) { 
-      .gallery-grid { grid-template-columns: repeat(3, 1fr); } 
-    }
-    
-    @media (max-width: 768px) { 
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); } 
-    }
-    
-    @media (max-width: 480px) { 
-      .gallery-grid { grid-template-columns: 1fr; } 
-    }
+    @media (max-width: 992px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .gallery-grid { grid-template-columns: 1fr; } }
     
     .gallery-item {
-      border-radius: 1.5rem;
+      border-radius: 2rem;
       overflow: hidden;
       aspect-ratio: 1/1;
       box-shadow: 0 20px 30px -15px #00000040;
@@ -128,20 +129,21 @@
     /* плашки с фактами */
     .fact-bento {
       background: white;
-      border-radius: 2rem;
-      padding: 1.5rem;
+      border-radius: 2.5rem;
+      padding: 2rem;
       box-shadow: 0 10px 30px -15px #1f4b7a;
       border: 1px solid rgba(191, 46, 28, 0.2);
       height: 100%;
     }
-    
-    @media (max-width: 768px) {
-      .fact-bento { padding: 1.2rem; }
+    @media (max-width: 576px) {
+      .fact-bento {
+        padding: 1.5rem;
+      }
     }
 
-    /* параллакс-секция - отключаем фикс на мобильных */
+    /* параллакс-секция */
     .parallax-window {
-      min-height: 400px;
+      min-height: 500px;
       background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/460740/pexels-photo-460740.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
       display: flex;
       align-items: center;
@@ -149,9 +151,19 @@
       color: white;
       text-shadow: 0 4px 15px black;
     }
-    
     @media (min-width: 769px) {
-      .parallax-window { background-attachment: fixed; }
+      .parallax-window {
+        background-attachment: fixed;
+      }
+    }
+    @media (max-width: 768px) {
+      .parallax-window {
+        min-height: 400px;
+        background-attachment: scroll;
+      }
+      .parallax-window .display-3 {
+        font-size: 2.5rem;
+      }
     }
 
     .footer-modern {
@@ -160,29 +172,27 @@
       border-top: 6px solid #bf2e1c;
     }
 
+    [data-aos] { pointer-events: none; } .aos-animate { pointer-events: auto; }
+    
     /* стили для модальных окон */
     .modal-texas .modal-content {
-      border-radius: 1.5rem;
+      border-radius: 2rem;
       background: #faf6f0;
       border: 3px solid #bf2e1c;
     }
-    
-    @media (max-width: 576px) {
-      .modal-texas .modal-content { border-radius: 1rem; }
-      .modal-texas .modal-body { padding: 1rem; }
-    }
-    
     .modal-texas .modal-header {
       border-bottom: 2px solid #bf2e1c;
       background: #1f4b7a;
       color: white;
-      border-radius: 1.5rem 1.5rem 0 0;
+      border-radius: 2rem 2rem 0 0;
     }
-    
+    .modal-texas .modal-body {
+      padding: 2rem;
+    }
     .modal-texas .modal-body img {
-      border-radius: 1rem;
-      margin-bottom: 1rem;
-      max-height: 300px;
+      border-radius: 1.5rem;
+      margin-bottom: 1.5rem;
+      max-height: 400px;
       width: 100%;
       object-fit: cover;
     }
@@ -190,7 +200,7 @@
     /* аудио плеер */
     .texas-audio {
       width: 100%;
-      margin: 0.5rem 0;
+      margin: 1rem 0;
       border-radius: 2rem;
       background: #1f4b7a;
     }
@@ -198,7 +208,7 @@
     /* карточки знаменитостей */
     .celebrity-card {
       background: white;
-      border-radius: 1.2rem;
+      border-radius: 1.5rem;
       padding: 1rem;
       text-align: center;
       box-shadow: 0 10px 20px -10px #1f4b7a;
@@ -212,75 +222,57 @@
     }
     .celebrity-card img {
       width: 100%;
-      height: 180px;
-      border-radius: 0.8rem;
+      height: 200px;
+      border-radius: 1rem;
       object-fit: cover;
       margin-bottom: 1rem;
       border: 3px solid #bf2e1c;
     }
-    
-    @media (max-width: 768px) {
-      .celebrity-card img { height: 150px; }
+    @media (max-width: 576px) {
+      .celebrity-card img {
+        height: 150px;
+      }
     }
 
-    /* адаптивная навигация */
-    .navbar-brand { font-size: calc(1.2rem + 1vw) !important; }
-    
-    /* swiper адаптация */
-    .swiper { height: 400px !important; }
-    @media (max-width: 768px) { .swiper { height: 300px !important; } }
-    
-    .swiper-slide { position: relative; }
-    .carousel-caption {
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(5px);
-      border-radius: 2rem;
-      padding: 0.5rem 1rem;
-      bottom: 20px;
+    /* Свайпер на мобильных */
+    .swiper {
+      width: 100%;
+      height: 500px;
     }
-    
-    /* контейнерные отступы */
     @media (max-width: 768px) {
-      .container { padding-left: 20px; padding-right: 20px; }
-      .display-1 { font-size: 3.5rem; }
-      .display-4 { font-size: 2.5rem; }
-      .display-5 { font-size: 2rem; }
-      .display-6 { font-size: 1.5rem; }
-    }
-    
-    /* кнопки адаптация */
-    .btn-lg { padding: 0.75rem 1.5rem !important; font-size: 1rem !important; }
-    @media (max-width: 576px) {
-      .btn-lg { padding: 0.5rem 1rem !important; }
-      .d-flex.gap-3 { flex-direction: column; }
-    }
-    
-    /* сетка для городов */
-    .row.g-4 > [class*="col-"] { margin-bottom: 1rem; }
-    
-    /* табы адаптация */
-    .nav-tabs .nav-link { 
-      padding: 0.75rem 1rem; 
-      font-size: clamp(0.8rem, 3vw, 1rem);
-    }
-    
-    @media (max-width: 576px) {
-      .nav-tabs { flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; }
-      .nav-tabs .nav-item { flex: 0 0 auto; }
-    }
-    
-    /* исправление AOS */
-    [data-aos] { pointer-events: none; } 
-    .aos-animate { pointer-events: auto; }
-    
-    /* мобильное меню */
-    @media (max-width: 992px) {
-      .navbar-collapse { 
-        background: rgba(0,0,0,0.9); 
-        padding: 1rem; 
-        border-radius: 1rem;
-        margin-top: 0.5rem;
+      .swiper {
+        height: 350px;
       }
+    }
+    
+    /* Табы */
+    .nav-tabs .nav-link {
+      font-size: 1.1rem;
+      padding: 0.8rem 1.5rem;
+    }
+    @media (max-width: 576px) {
+      .nav-tabs .nav-link {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.8rem;
+      }
+    }
+    
+    /* Контейнеры */
+    .container {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* Исправление overflow */
+    .row {
+      margin-left: -12px;
+      margin-right: -12px;
+    }
+    [class*="col-"] {
+      padding-left: 12px;
+      padding-right: 12px;
     }
   </style>
 </head>
@@ -289,30 +281,30 @@
   <!-- НАВИГАЦИЯ прозрачная -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-2 py-lg-3" style="background: rgba(0,0,0,0.2); backdrop-filter: blur(8px);">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#"><i class="bi bi-star-fill me-2" style="color: #e8d5b5;"></i>TEXAS</a>
-      <button class="navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#nav">
+      <a class="navbar-brand fs-1 fs-lg-2 fw-bold" href="#"><i class="bi bi-star-fill me-2" style="color: #e8d5b5;"></i>TEXAS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="nav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link px-3" href="#essence">Суть</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="#nature">Природа</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="#culture">Культура</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="#gallery">Галерея</a></li>
+          <li class="nav-item"><a class="nav-link" href="#essence">Суть</a></li>
+          <li class="nav-item"><a class="nav-link" href="#nature">Природа</a></li>
+          <li class="nav-item"><a class="nav-link" href="#culture">Культура</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Галерея</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO – минимализм + крупный заголовок -->
   <section class="hero-modern">
     <div class="container text-white position-relative" style="z-index: 2;">
       <div class="row min-vh-100 align-items-center">
         <div class="col-lg-8" data-aos="fade-up" data-aos-duration="1400">
-          <span class="badge bg-white text-dark px-4 py-3 rounded-pill mb-4">✦ THE LONE STAR STATE ✦</span>
-          <h1 class="fw-bold">Техас</h1>
-          <p class="fs-4 mb-5 col-lg-8 opacity-75">Земля контрастов: от пустынь до космоса, от ковбоев до стартапов</p>
-          <div class="d-flex gap-3 flex-wrap">
+          <span class="badge bg-white text-dark px-3 px-lg-4 py-2 py-lg-3 rounded-pill mb-4 fs-6">✦ THE LONE STAR STATE ✦</span>
+          <h1 class="display-1 fw-bold" style="font-size: clamp(3rem, 12vw, 7rem);">Техас</h1>
+          <p class="fs-4 fs-lg-3 mb-5 col-lg-8 opacity-75">Земля контрастов: от пустынь до космоса, от ковбоев до стартапов</p>
+          <div class="d-flex flex-wrap gap-3">
             <a href="#essence" class="btn btn-outline-light btn-lg px-4 px-lg-5 rounded-pill">Исследовать</a>
             <a href="#gallery" class="btn btn-light btn-lg px-4 px-lg-5 rounded-pill"><i class="bi bi-camera-fill me-2"></i>Фото</a>
           </div>
@@ -322,60 +314,60 @@
   </section>
 
   <!-- основной контейнер -->
-  <div class="container my-5 py-3 py-lg-5" id="essence">
+  <div class="container my-5 py-5" id="essence">
 
     <!-- БЛОК 1-5: символы -->
-    <div class="row g-4">
+    <div class="row g-4 g-lg-5">
       <div class="col-12"><h2 class="display-4 mb-4" data-aos="fade">Штат в символах</h2></div>
       
       <!-- 1. название -->
-      <div class="col-md-6 col-xl-4" data-aos="flip-left" data-aos-delay="50" data-bs-toggle="modal" data-bs-target="#modalName">
+      <div class="col-sm-6 col-xl-4" data-aos="flip-left" data-aos-delay="50" data-bs-toggle="modal" data-bs-target="#modalName">
         <div class="collage-card">
-          <img src="https://avatars.mds.yandex.net/i?id=bce2fae98a00ed3aaf47b4242e4a066852401c79-16431805-images-thumbs&n=13" class="collage-img" alt="Техасский пейзаж с флагом" loading="lazy">
+          <img src="https://avatars.mds.yandex.net/i?id=bce2fae98a00ed3aaf47b4242e4a066852401c79-16431805-images-thumbs&n=13" class="collage-img" alt="Техасский пейзаж с флагом штата Одинокая звезда на фоне заката над прерией" loading="lazy">
           <div class="card-content">
             <div class="d-flex align-items-center gap-3"><i class="bi bi-pin-map-fill fs-1 text-texas-red"></i><h3>1. Название</h3></div>
-            <p class="fs-5 mt-2">От слова каддо «táysha» — друзья. Одинокая звезда на флаге — символ независимости.</p>
+            <p class="fs-5 mt-2">От слова каддо «táysha» — друзья. Одинокая звезда на флаге — символ независимости (1836–1845).</p>
             <span class="badge bg-texas-red">Нажми, чтобы узнать больше</span>
           </div>
         </div>
       </div>
       
       <!-- 2. девиз -->
-      <div class="col-md-6 col-xl-4" data-aos="flip-left" data-aos-delay="100" data-bs-toggle="modal" data-bs-target="#modalMotto">
+      <div class="col-sm-6 col-xl-4" data-aos="flip-left" data-aos-delay="100" data-bs-toggle="modal" data-bs-target="#modalMotto">
         <div class="collage-card">
-          <img src="https://avatars.mds.yandex.net/i?id=15dfc1b682eef445cc930b19f59774ac371427ec-8425915-images-thumbs&n=13" class="collage-img" alt="Техасский флаг" loading="lazy">
+          <img src="https://avatars.mds.yandex.net/i?id=15dfc1b682eef445cc930b19f59774ac371427ec-8425915-images-thumbs&n=13" class="collage-img" alt="Техасский флаг крупным планом, развевающийся на ветру на фоне голубого неба" loading="lazy">
           <div class="card-content"><i class="bi bi-chat-quote-fill fs-1 text-texas-red"></i><h3>2. Девиз</h3><span class="display-6">«Friendship»</span><p class="mt-2">Принят в 1930, отражает мирные отношения с коренными племенами.</p><span class="badge bg-texas-red">Нажми, чтобы узнать больше</span></div>
         </div>
       </div>
       
       <!-- 3. дерево -->
-      <div class="col-md-6 col-xl-4" data-aos="flip-left" data-aos-delay="150" data-bs-toggle="modal" data-bs-target="#modalTree">
+      <div class="col-sm-6 col-xl-4" data-aos="flip-left" data-aos-delay="150" data-bs-toggle="modal" data-bs-target="#modalTree">
         <div class="collage-card">
-          <img src="https://avatars.mds.yandex.net/i?id=7e5d844da5f00ac991fc69b5ed8cd3fdc268e8fe-5646157-images-thumbs&n=13" class="collage-img" alt="Дерево пекан" loading="lazy">
+          <img src="https://avatars.mds.yandex.net/i?id=7e5d844da5f00ac991fc69b5ed8cd3fdc268e8fe-5646157-images-thumbs&n=13" class="collage-img" alt="Дерево пекан с крупными зелеными орехами на ветках, техасский пейзаж на заднем плане" loading="lazy">
           <div class="card-content"><i class="bi bi-tree-fill fs-1 text-texas-red"></i><h3>3. Дерево</h3><h4>Пекан</h4><p>Символ с 1919. Техас — лидер по производству ореха пекан.</p><span class="badge bg-texas-red">Нажми, чтобы узнать больше</span></div>
         </div>
       </div>
       
       <!-- 4. животное -->
-      <div class="col-md-6 col-xl-4" data-aos="flip-left" data-aos-delay="200" data-bs-toggle="modal" data-bs-target="#modalAnimal">
+      <div class="col-sm-6 col-xl-4" data-aos="flip-left" data-aos-delay="200" data-bs-toggle="modal" data-bs-target="#modalAnimal">
         <div class="collage-card">
-          <img src="https://avatars.mds.yandex.net/i?id=f582cf889b95865b591abe7987109e35b9866d32-5132380-images-thumbs&n=13" class="collage-img" alt="Броненосец" loading="lazy">
+          <img src="https://avatars.mds.yandex.net/i?id=f582cf889b95865b591abe7987109e35b9866d32-5132380-images-thumbs&n=13" class="collage-img" alt="Девятипоясный броненосец - официальное животное Техаса, роющий нору в пустынной почве" loading="lazy">
           <div class="card-content"><i class="bi bi-shield-fill fs-1 text-texas-red"></i><h3>4. Животное</h3><p>Девятипоясный броненосец + длиннорогий бык — символы стойкости.</p><span class="badge bg-texas-red">Нажми, чтобы узнать больше</span></div>
         </div>
       </div>
       
       <!-- 5. символика -->
-      <div class="col-md-6 col-xl-4" data-aos="flip-left" data-aos-delay="250" data-bs-toggle="modal" data-bs-target="#modalSymbols">
+      <div class="col-sm-6 col-xl-4" data-aos="flip-left" data-aos-delay="250" data-bs-toggle="modal" data-bs-target="#modalSymbols">
         <div class="collage-card">
-          <img src="https://avatars.mds.yandex.net/i?id=66a3da8ca1ea67af96c2fac8b53c106bcdae9afb-3095911-images-thumbs&n=13" class="collage-img" alt="Голубые люпины" loading="lazy">
+          <img src="https://avatars.mds.yandex.net/i?id=66a3da8ca1ea67af96c2fac8b53c106bcdae9afb-3095911-images-thumbs&n=13" class="collage-img" alt="Поле голубых люпинов - официальный цветок Техаса, цветущее поле на фоне холмов" loading="lazy">
           <div class="card-content"><i class="bi bi-star-fill fs-1 text-texas-red"></i><h3>5. Символика</h3><p>🌼 Голубой люпин, 🐦 пересмешник, 💎 нефрит, 🍲 чили кон карне.</p><span class="badge bg-texas-red">Нажми, чтобы узнать больше</span></div>
         </div>
       </div>
       
       <!-- 6. факты -->
-      <div class="col-md-6 col-xl-4" data-aos="flip-left" data-aos-delay="300" data-bs-toggle="modal" data-bs-target="#modalFacts">
+      <div class="col-sm-6 col-xl-4" data-aos="flip-left" data-aos-delay="300" data-bs-toggle="modal" data-bs-target="#modalFacts">
         <div class="collage-card">
-          <img src="https://avatars.mds.yandex.net/i?id=c2093262b8d80279ec4e5685be4f529ad7fdf8a1-7465150-images-thumbs&n=13" class="collage-img" alt="Ковбой" loading="lazy">
+          <img src="https://avatars.mds.yandex.net/i?id=c2093262b8d80279ec4e5685be4f529ad7fdf8a1-7465150-images-thumbs&n=13" class="collage-img" alt="Ковбой в широкополой шляпе верхом на лошади на закате в техасской прерии" loading="lazy">
           <div class="card-content"><i class="bi bi-lightbulb fs-1 text-texas-red"></i><h3>6. Факты</h3>
             <ul class="list-unstyled"><li>🏛️ 6 флагов</li><li>🤠 «Maverick»</li><li>🦇 1.5 млн летучих мышей</li></ul>
             <span class="badge bg-texas-red">Нажми, чтобы узнать больше</span>
@@ -385,16 +377,8 @@
     </div>
 
     <!-- 7. ПЛОЩАДЬ -->
-    <div class="row my-4 my-lg-5 py-3 py-lg-5" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#modalArea">
-      <div class="col-12">
-        <div class="parallax-window rounded-4 rounded-lg-5 p-4 p-lg-5" style="cursor: pointer;">
-          <div class="text-center">
-            <h2 class="display-5 display-lg-3">7. Площадь · 695 662 км²</h2>
-            <p class="fs-4 fs-lg-2">2-е место в США, больше Германии и Англии вместе</p>
-            <span class="badge bg-texas-red fs-5 mt-3">Нажми для деталей</span>
-          </div>
-        </div>
-      </div>
+    <div class="row my-5 py-5" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#modalArea">
+      <div class="col-12"><div class="parallax-window rounded-5 p-4 p-lg-5" style="cursor: pointer;"><h2 class="display-3 display-md-2">7. Площадь · 695 662 км²</h2><p class="fs-2 fs-md-1">2-е место в США, больше Германии и Англии вместе</p><span class="badge bg-texas-red fs-5 mt-3">Нажми для деталей</span></div></div>
     </div>
 
     <!-- 8. ПРИРОДА -->
@@ -402,257 +386,230 @@
       <h2 class="display-5 mb-3">8. Природа — 4 стихии</h2>
       
       <div class="col-md-6" data-bs-toggle="modal" data-bs-target="#modalRelief">
-        <div class="fact-bento" style="cursor: pointer;">
-          <i class="bi bi-mountain fs-1 text-texas-blue"></i>
-          <h3>Рельеф</h3>
-          <img src="https://avatars.mds.yandex.net/i?id=88117ee2f7fe495d27e82b968c90e92d1b07dc5a-10636447-images-thumbs&n=13" class="img-fluid rounded-4 my-2" alt="Горы Гуадалупе" loading="lazy">
-          <p>Горы Гуадалупе (2667 м), плато Эдуардс, прибрежные равнины.</p>
-          <span class="badge bg-texas-red">Нажми для подробностей</span>
-        </div>
+        <div class="fact-bento" style="cursor: pointer;"><i class="bi bi-mountain fs-1 text-texas-blue"></i><h3>Рельеф</h3>
+        <img src="https://avatars.mds.yandex.net/i?id=88117ee2f7fe495d27e82b968c90e92d1b07dc5a-10636447-images-thumbs&n=13" class="img-fluid rounded-4 my-2" alt="Горы Гуадалупе - высочайшая точка Техаса, скалистые пики на фоне голубого неба" loading="lazy">
+        <p>Горы Гуадалупе (2667 м), плато Эдуардс, прибрежные равнины.</p>
+        <span class="badge bg-texas-red">Нажми для подробностей</span></div>
       </div>
       
       <div class="col-md-6" data-bs-toggle="modal" data-bs-target="#modalClimate">
-        <div class="fact-bento" style="cursor: pointer;">
-          <i class="bi bi-cloud-rain fs-1 text-texas-blue"></i>
-          <h3>Климат</h3>
-          <img src="https://avatars.mds.yandex.net/i?id=fab8bda13adf474ebbc72932b7b5b77c619a5012-10702414-images-thumbs&n=13" class="img-fluid rounded-4 my-2" alt="Гроза" loading="lazy">
-          <p>От засушливого до влажного субтропического. Ураганы, торнадо.</p>
-          <span class="badge bg-texas-red">Нажми для подробностей</span>
-        </div>
+        <div class="fact-bento" style="cursor: pointer;"><i class="bi bi-cloud-rain fs-1 text-texas-blue"></i><h3>Климат</h3>
+        <img src="https://avatars.mds.yandex.net/i?id=fab8bda13adf474ebbc72932b7b5b77c619a5012-10702414-images-thumbs&n=13" class="img-fluid rounded-4 my-2" alt="Драматичное грозовое небо над техасской равниной, темные тучи и молния" loading="lazy">
+        <p>От засушливого до влажного субтропического. Ураганы, торнадо.</p>
+        <span class="badge bg-texas-red">Нажми для подробностей</span></div>
       </div>
       
       <div class="col-md-6" data-bs-toggle="modal" data-bs-target="#modalWater">
-        <div class="fact-bento" style="cursor: pointer;">
-          <i class="bi bi-water fs-1 text-texas-blue"></i>
-          <h3>Воды</h3>
-          <img src="https://avatars.mds.yandex.net/i?id=02f2c5e8f430eeb8a4676c65e369971051037dbd-11401855-images-thumbs&n=13" class="img-fluid rounded-4 my-2" alt="Рио-Гранде" loading="lazy">
-          <p>Рио-Гранде, Колорадо, Бразос; множество озёр и водохранилищ.</p>
-          <span class="badge bg-texas-red">Нажми для подробностей</span>
-        </div>
+        <div class="fact-bento" style="cursor: pointer;"><i class="bi bi-water fs-1 text-texas-blue"></i><h3>Воды</h3>
+        <img src="https://avatars.mds.yandex.net/i?id=02f2c5e8f430eeb8a4676c65e369971051037dbd-11401855-images-thumbs&n=13" class="img-fluid rounded-4 my-2" alt="Река Рио-Гранде, извивающаяся через каньон, бирюзовая вода среди красных скал" loading="lazy">
+        <p>Рио-Гранде, Колорадо, Бразос; множество озёр и водохранилищ.</p>
+        <span class="badge bg-texas-red">Нажми для подробностей</span></div>
       </div>
       
       <div class="col-md-6" data-bs-toggle="modal" data-bs-target="#modalEco">
-        <div class="fact-bento" style="cursor: pointer;">
-          <i class="bi bi-flower1 fs-1 text-texas-blue"></i>
-          <h3>Экосистемы</h3>
-          <img src="https://avatars.mds.yandex.net/i?id=5d95e92bc169832bf687f4c4f372a9621ed3db46-9709143-images-thumbs&n=13" class="img-fluid rounded-4 my-2" alt="Пустыня" loading="lazy">
-          <p>Прерии, пустыни, сосновые леса, болота.</p>
-          <span class="badge bg-texas-red">Нажми для подробностей</span>
-        </div>
+        <div class="fact-bento" style="cursor: pointer;"><i class="bi bi-flower1 fs-1 text-texas-blue"></i><h3>Экосистемы</h3>
+        <img src="https://avatars.mds.yandex.net/i?id=5d95e92bc169832bf687f4c4f372a9621ed3db46-9709143-images-thumbs&n=13" class="img-fluid rounded-4 my-2" alt="Пустынный пейзаж Техаса с кактусами и цветущими растениями на переднем плане" loading="lazy">
+        <p>Прерии, пустыни, сосновые леса, болота.</p>
+        <span class="badge bg-texas-red">Нажми для подробностей</span></div>
       </div>
     </div>
 
     <!-- 9. РЕСУРСЫ -->
-    <div class="row my-4 my-lg-5 align-items-center" data-aos="fade-right" data-bs-toggle="modal" data-bs-target="#modalResources" style="cursor: pointer;">
-      <div class="col-lg-6 mb-3 mb-lg-0">
-        <img src="https://avatars.mds.yandex.net/i?id=4ee6b54bdbd64c6960eab513165a53ab307f1eb5-5501386-images-thumbs&n=13" class="img-fluid rounded-4 rounded-lg-5 shadow" alt="Нефтяная качалка" loading="lazy">
-      </div>
-      <div class="col-lg-6">
-        <h2 class="display-6">9. Природные ресурсы</h2>
-        <p class="fs-4 fs-lg-3">🛢️ Нефть, газ, гелий, сера, соль, древесина. Техас — энергетическое сердце США.</p>
-        <span class="badge bg-texas-red fs-5">Нажми для полной информации</span>
-      </div>
+    <div class="row my-5 align-items-center" data-aos="fade-right" data-bs-toggle="modal" data-bs-target="#modalResources" style="cursor: pointer;">
+      <div class="col-lg-6 mb-4 mb-lg-0"><img src="https://avatars.mds.yandex.net/i?id=4ee6b54bdbd64c6960eab513165a53ab307f1eb5-5501386-images-thumbs&n=13" class="img-fluid rounded-5 shadow" alt="Нефтяная качалка на закате, добыча нефти в Пермском бассейне Техаса" loading="lazy"></div>
+      <div class="col-lg-6"><h2 class="display-6">9. Природные ресурсы</h2><p class="fs-3">🛢️ Нефть (Пермский бассейн), газ, гелий, сера, соль, древесина. Техас — энергетическое сердце США.</p>
+      <span class="badge bg-texas-red fs-5">Нажми для полной информации</span></div>
     </div>
 
     <!-- 10. НАСЕЛЕНИЕ -->
-    <div class="row mt-4 mt-lg-5 g-3 g-lg-4" data-aos="fade-up">
+    <div class="row mt-5 g-4" data-aos="fade-up">
       <div class="col-12"><h2 class="display-5">10. Население: 30,5 млн</h2></div>
-      <div class="col-6 col-md-3">
-        <div class="fact-bento text-center" data-bs-toggle="modal" data-bs-target="#modalHouston" style="cursor: pointer;">
-          <i class="bi bi-building fs-2"></i>
-          <h3 class="h5 h4-md">Хьюстон</h3>
-          <p class="mb-2">2.3 млн</p>
-          <span class="badge bg-texas-red small">Нажми</span>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="fact-bento text-center" data-bs-toggle="modal" data-bs-target="#modalAustin" style="cursor: pointer;">
-          <i class="bi bi-building fs-2"></i>
-          <h3 class="h5 h4-md">Остин</h3>
-          <p class="mb-2">1 млн</p>
-          <span class="badge bg-texas-red small">Нажми</span>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="fact-bento text-center" data-bs-toggle="modal" data-bs-target="#modalDallas" style="cursor: pointer;">
-          <i class="bi bi-building fs-2"></i>
-          <h3 class="h5 h4-md">Даллас</h3>
-          <p class="mb-2">1.3 млн</p>
-          <span class="badge bg-texas-red small">Нажми</span>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="fact-bento text-center" data-bs-toggle="modal" data-bs-target="#modalSanAntonio" style="cursor: pointer;">
-          <i class="bi bi-building fs-2"></i>
-          <h3 class="h5 h4-md">Сан-Антонио</h3>
-          <p class="mb-2">1.5 млн</p>
-          <span class="badge bg-texas-red small">Нажми</span>
-        </div>
-      </div>
+      <div class="col-6 col-md-3"><div class="fact-bento" data-bs-toggle="modal" data-bs-target="#modalHouston" style="cursor: pointer;"><i class="bi bi-building fs-2"></i><h3 class="h5 h3-md">Хьюстон</h3><p>2.3 млн</p>
+        <span class="badge bg-texas-red">Нажми</span></div></div>
+      <div class="col-6 col-md-3"><div class="fact-bento" data-bs-toggle="modal" data-bs-target="#modalAustin" style="cursor: pointer;"><i class="bi bi-building fs-2"></i><h3 class="h5 h3-md">Остин</h3><p>1 млн</p>
+        <span class="badge bg-texas-red">Нажми</span></div></div>
+      <div class="col-6 col-md-3"><div class="fact-bento" data-bs-toggle="modal" data-bs-target="#modalDallas" style="cursor: pointer;"><i class="bi bi-building fs-2"></i><h3 class="h5 h3-md">Даллас</h3><p>1.3 млн</p>
+        <span class="badge bg-texas-red">Нажми</span></div></div>
+      <div class="col-6 col-md-3"><div class="fact-bento" data-bs-toggle="modal" data-bs-target="#modalSanAntonio" style="cursor: pointer;"><i class="bi bi-building fs-2"></i><h3 class="h5 h3-md">Сан-Антонио</h3><p>1.5 млн</p>
+        <span class="badge bg-texas-red">Нажми</span></div></div>
       
-      <div class="col-12 mt-4">
-        <div class="gallery-grid">
-          <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalHouston"><img src="https://avatars.mds.yandex.net/i?id=9b126d4a768b709bb6218ba9092424bd-4834298-images-thumbs&n=13" alt="Хьюстон" loading="lazy"></div>
-          <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalAustin"><img src="https://avatars.mds.yandex.net/i?id=bd92e1ee835552f4d9660feea2aef760c027af8b-9216096-images-thumbs&n=13" alt="Остин" loading="lazy"></div>
-          <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalDallas"><img src="https://avatars.mds.yandex.net/i?id=9799cfdd11f4fd7bd99bad7a4afe8da1c2b1edb7-5234693-images-thumbs&n=13" alt="Даллас" loading="lazy"></div>
-          <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalSanAntonio"><img src="https://avatars.mds.yandex.net/i?id=e683aaf67900ffd6bb5ac5f454d7e7d5fc93c018-10595433-images-thumbs&n=13" alt="Сан-Антонио" loading="lazy"></div>
-        </div>
-      </div>
+      <div class="col-12 mt-4"><div class="gallery-grid">
+        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalHouston"><img src="https://avatars.mds.yandex.net/i?id=9b126d4a768b709bb6218ba9092424bd-4834298-images-thumbs&n=13" alt="Даунтаун Хьюстона - небоскребы, стеклянные здания, городской пейзаж" loading="lazy"></div>
+        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalAustin"><img src="https://avatars.mds.yandex.net/i?id=bd92e1ee835552f4d9660feea2aef760c027af8b-9216096-images-thumbs&n=13" alt="Капитолий штата Техас в Остине на закате, розовый гранит, подсветка" loading="lazy"></div>
+        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalDallas"><img src="https://avatars.mds.yandex.net/i?id=9799cfdd11f4fd7bd99bad7a4afe8da1c2b1edb7-5234693-images-thumbs&n=13" alt="Силуэт Далласа ночью, небоскребы, огни города" loading="lazy"></div>
+        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#modalSanAntonio"><img src="https://avatars.mds.yandex.net/i?id=e683aaf67900ffd6bb5ac5f454d7e7d5fc93c018-10595433-images-thumbs&n=13" alt="Миссия Аламо в Сан-Антонио, историческое каменное здание, испанская архитектура" loading="lazy"></div>
+      </div></div>
     </div>
 
-    <!-- 11. ДОСТОПРИМЕЧАТЕЛЬНОСТИ -->
-    <div class="row my-4 my-lg-5" id="gallery">
+    <!-- 11. ДОСТОПРИМЕЧАТЕЛЬНОСТИ – карусель swiper -->
+    <div class="row my-5" id="gallery">
       <h2 class="display-5">11. Достопримечательности и парки</h2>
-      <div class="swiper mySwiper" style="height: 400px; width:100%; border-radius: 30px; cursor: pointer;">
+      <div class="swiper mySwiper" style="width:100%; border-radius: 40px; cursor: pointer;">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" data-bs-toggle="modal" data-bs-target="#modalAlamo">
-            <img src="https://avatars.mds.yandex.net/i?id=76679e62cb7b70d76d45b6912c98d6617171006a-5150820-images-thumbs&n=13" class="w-100 h-100" style="object-fit:cover;" alt="Аламо" loading="lazy">
-            <div class="carousel-caption">Аламо, Сан-Антонио</div>
-          </div>
-          <div class="swiper-slide" data-bs-toggle="modal" data-bs-target="#modalBigBend">
-            <img src="https://avatars.mds.yandex.net/i?id=bdf047dc7d96a4feb368232ae2302ac2767a49ab-12323508-images-thumbs&n=13" class="w-100 h-100" style="object-fit:cover;" alt="Биг-Бенд" loading="lazy">
-            <div class="carousel-caption">Биг-Бенд</div>
-          </div>
-          <div class="swiper-slide" data-bs-toggle="modal" data-bs-target="#modalNASA">
-            <img src="https://avatars.mds.yandex.net/i?id=13cc86424b2c152f7544190856fc906096714fbf-4905400-images-thumbs&n=13" class="w-100 h-100" style="object-fit:cover;" alt="NASA" loading="lazy">
-            <div class="carousel-caption">Космический центр Хьюстон</div>
-          </div>
-          <div class="swiper-slide" data-bs-toggle="modal" data-bs-target="#modalGuadalupe">
-            <img src="https://avatars.mds.yandex.net/i?id=09df56b43e5f575c63d272a05d15eddd8cffd638-9071479-images-thumbs&n=13" class="w-100 h-100" style="object-fit:cover;" alt="Горы Гуадалупе" loading="lazy">
-            <div class="carousel-caption">Горы Гуадалупе</div>
-          </div>
-          <div class="swiper-slide" data-bs-toggle="modal" data-bs-target="#modalCapitol">
-            <img src="https://avatars.mds.yandex.net/i?id=260cd768bf7eb2cb00475af9bfb619aeeaa0932a-5232996-images-thumbs&n=13" class="w-100 h-100" style="object-fit:cover;" alt="Капитолий" loading="lazy">
-            <div class="carousel-caption">Капитолий, Остин</div>
-          </div>
+          <div class="swiper-slide" data-bs-toggle="modal" data-bs-target="#modalAlamo"><img src="https://avatars.mds.yandex.net/i?id=76679e62cb7b70d76d45b6912c98d6617171006a-5150820-images-thumbs&n=13" class="w-100 h-100" style="object-fit:cover;" alt="Аламо - историческая миссия в Сан-Антонио, символ техасской независимости" loading="lazy"><div class="carousel-caption">Аламо, Сан-Антонио</div></div>
+          <div class="swiper-slide" data-bs-toggle="modal" data-bs-target="#modalBigBend"><img src="https://avatars.mds.yandex.net/i?id=bdf047dc7d96a4feb368232ae2302ac2767a49ab-12323508-images-thumbs&n=13" class="w-100 h-100" style="object-fit:cover;" alt="Национальный парк Биг-Бенд - каньоны, река Рио-Гранде, пустынный пейзаж" loading="lazy"><div class="carousel-caption">Биг-Бенд</div></div>
+          <div class="swiper-slide" data-bs-toggle="modal" data-bs-target="#modalNASA"><img src="https://avatars.mds.yandex.net/i?id=13cc86424b2c152f7544190856fc906096714fbf-4905400-images-thumbs&n=13" class="w-100 h-100" style="object-fit:cover;" alt="Космический центр Хьюстон NASA - ракета Saturn V, космический шаттл" loading="lazy"><div class="carousel-caption">Космический центр Хьюстон</div></div>
+          <div class="swiper-slide" data-bs-toggle="modal" data-bs-target="#modalGuadalupe"><img src="https://avatars.mds.yandex.net/i?id=09df56b43e5f575c63d272a05d15eddd8cffd638-9071479-images-thumbs&n=13" class="w-100 h-100" style="object-fit:cover;" alt="Горы Гуадалупе - высочайшая точка Техаса, скалистые пики, альпийские луга" loading="lazy"><div class="carousel-caption">Горы Гуадалупе</div></div>
+          <div class="swiper-slide" data-bs-toggle="modal" data-bs-target="#modalCapitol"><img src="https://avatars.mds.yandex.net/i?id=260cd768bf7eb2cb00475af9bfb619aeeaa0932a-5232996-images-thumbs&n=13" class="w-100 h-100" style="object-fit:cover;" alt="Капитолий штата Техас в Остине - здание из розового гранита, флаг Техаса" loading="lazy"><div class="carousel-caption">Капитолий, Остин</div></div>
         </div>
         <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev d-none d-md-flex"></div>
-        <div class="swiper-button-next d-none d-md-flex"></div>
+        <div class="swiper-button-prev"></div><div class="swiper-button-next"></div>
       </div>
     </div>
 
     <!-- 12-13 ПРОМЫШЛЕННОСТЬ И ПАРТНЁРЫ -->
     <div class="row g-4">
       <div class="col-md-6" data-aos="fade-right" data-bs-toggle="modal" data-bs-target="#modalIndustry" style="cursor: pointer;">
-        <div class="fact-bento">
-          <i class="bi bi-gear fs-1"></i>
-          <h3>12. Промышленность</h3>
-          <p>⛽ Нефтехимия, 💻 IT (Остин), 🚀 SpaceX, Lockheed Martin, 🌾 хлопок, скот.</p>
-          <img src="https://avatars.mds.yandex.net/i?id=d4db7de9b932afde3718bc41fb14b1d5b9ee9065-10851145-images-thumbs&n=13" class="img-fluid rounded-4" alt="Нефтезавод" loading="lazy">
-          <span class="badge bg-texas-red mt-3">Нажми для подробностей</span>
-        </div>
+        <div class="fact-bento"><i class="bi bi-gear fs-1"></i><h3>12. Промышленность</h3>
+        <p>⛽ Нефтехимия, 💻 IT (Остин), 🚀 SpaceX, Lockheed Martin, 🌾 хлопок, скот.</p>
+        <img src="https://avatars.mds.yandex.net/i?id=d4db7de9b932afde3718bc41fb14b1d5b9ee9065-10851145-images-thumbs&n=13" class="img-fluid rounded-4" alt="Нефтеперерабатывающий завод в Техасе, промышленный комплекс, трубы, огни ночью" loading="lazy">
+        <span class="badge bg-texas-red mt-3">Нажми для подробностей</span></div>
       </div>
       <div class="col-md-6" data-aos="fade-left" data-bs-toggle="modal" data-bs-target="#modalPartners" style="cursor: pointer;">
-        <div class="fact-bento">
-          <i class="bi bi-globe2 fs-1"></i>
-          <h3>13. Партнёры</h3>
-          <p>🌎 Мексика, Канада, Китай. Штаты: Луизиана, Оклахома, Нью-Мексико.</p>
-          <img src="https://avatars.mds.yandex.net/i?id=64d03b2ee83739dbf2d3e38f97fbb6c79ccad70a-12829626-images-thumbs&n=13" class="img-fluid rounded-4" alt="Порт Хьюстона" loading="lazy">
-          <span class="badge bg-texas-red mt-3">Нажми для подробностей</span>
-        </div>
+        <div class="fact-bento"><i class="bi bi-globe2 fs-1"></i><h3>13. Партнёры</h3>
+        <p>🌎 Мексика, Канада, Китай. Штаты: Луизиана, Оклахома, Нью-Мексико. Порт Хьюстона №1 по экспорту.</p>
+        <img src="https://avatars.mds.yandex.net/i?id=64d03b2ee83739dbf2d3e38f97fbb6c79ccad70a-12829626-images-thumbs&n=13" class="img-fluid rounded-4" alt="Порт Хьюстона - контейнеровозы, краны, грузовые корабли, логистический центр" loading="lazy">
+        <span class="badge bg-texas-red mt-3">Нажми для подробностей</span></div>
       </div>
     </div>
 
-    <!-- 14. ДУША ТЕХАСА -->
-    <div class="row mt-4 mt-lg-5" data-aos="zoom-in" id="culture">
+    <!-- 14. ПРОЧЕЕ – культура, еда, люди, песни -->
+    <div class="row mt-5" data-aos="zoom-in" id="culture">
       <h2 class="display-5 mb-4">14. Душа Техаса: музыка, еда, легенды</h2>
       
-      <ul class="nav nav-tabs flex-nowrap overflow-auto pb-2" id="texasTabs" role="tablist">
+      <!-- Навигационные вкладки -->
+      <ul class="nav nav-tabs flex-wrap" id="texasTabs" role="tablist">
         <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#food">🍖 BBQ & Еда</button></li>
         <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#music">🎸 Музыка & Песни</button></li>
         <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#people">🤠 Знаменитые люди</button></li>
       </ul>
       
       <div class="tab-content mt-4">
-        <!-- ЕДА -->
+        <!-- Вкладка ЕДА -->
         <div class="tab-pane fade show active" id="food">
           <div class="row g-3 g-lg-4">
             <div class="col-md-4">
               <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalFoodBrisket">
-                <img src="https://avatars.mds.yandex.net/i?id=6297ddd51f0945d19180ce5c367c669c782754cb-16441447-images-thumbs&n=13" alt="Грудинка" loading="lazy">
-                <h4 class="h5">Техасская грудинка</h4>
-                <p class="small">Копченая говядина, 12+ часов на дубе</p>
-                <span class="badge bg-texas-red small">Нажми</span>
+                <img src="https://avatars.mds.yandex.net/i?id=6297ddd51f0945d19180ce5c367c669c782754cb-16441447-images-thumbs&n=13" alt="Техасская грудинка (brisket) - копченое мясо, нарезанное ломтями" loading="lazy">
+                <h4>Техасская грудинка</h4>
+                <p>Копченая говядина, томящаяся 12+ часов на дубе или пекане</p>
+                <span class="badge bg-texas-red">Нажми для рецепта</span>
               </div>
             </div>
             <div class="col-md-4">
               <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalFoodRibs">
-                <img src="https://avatars.mds.yandex.net/i?id=f4bdd0800acf6942d3747a504a0447154cccb537-5651721-images-thumbs&n=13" alt="Ребрышки" loading="lazy">
-                <h4 class="h5">Ребрышки BBQ</h4>
-                <p class="small">Свиные ребра в пряной обтирке</p>
-                <span class="badge bg-texas-red small">Нажми</span>
+                <img src="https://avatars.mds.yandex.net/i?id=f4bdd0800acf6942d3747a504a0447154cccb537-5651721-images-thumbs&n=13" alt="Техасские ребрышки BBQ с соусом" loading="lazy">
+                <h4>Ребрышки BBQ</h4>
+                <p>Свиные ребра в пряной сухой обтирке, с дымком</p>
+                <span class="badge bg-texas-red">Нажми для рецепта</span>
               </div>
             </div>
             <div class="col-md-4">
               <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalFoodChili">
-                <img src="https://avatars.mds.yandex.net/i?id=5dc563b4f8ce0a1e1a290255d2522649aefe40ba-5222214-images-thumbs&n=13" alt="Чили" loading="lazy">
-                <h4 class="h5">Чили кон карне</h4>
-                <p class="small">Официальное блюдо штата</p>
-                <span class="badge bg-texas-red small">Нажми</span>
+                <img src="https://avatars.mds.yandex.net/i?id=5dc563b4f8ce0a1e1a290255d2522649aefe40ba-5222214-images-thumbs&n=13" alt="Чили кон карне - мясное рагу с перцем, официальное блюдо Техаса" loading="lazy">
+                <h4>Чили кон карне</h4>
+                <p>Официальное блюдо штата с 1977 года (без бобов!)</p>
+                <span class="badge bg-texas-red">Нажми для рецепта</span>
               </div>
             </div>
           </div>
         </div>
         
-        <!-- МУЗЫКА -->
+        <!-- Вкладка МУЗЫКА -->
         <div class="tab-pane fade" id="music">
           <div class="row g-3 g-lg-4">
             <div class="col-md-4">
               <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalWillie">
-                <img src="https://avatars.mds.yandex.net/i?id=4d52324a52e13ff7cd3bf3ee8b1c54ad_l-13433396-images-thumbs&n=13" alt="Уилли Нельсон" loading="lazy">
-                <h4 class="h6">Уилли Нельсон</h4>
-                <audio controls class="texas-audio mt-2">
+                <img src="https://avatars.mds.yandex.net/i?id=4d52324a52e13ff7cd3bf3ee8b1c54ad_l-13433396-images-thumbs&n=13" alt="Уилли Нельсон - легенда кантри, техасский идол" loading="lazy">
+                <h4>Уилли Нельсон</h4>
+                <p>«On the Road Again»</p>
+                <audio controls class="texas-audio mt-2" preload="none">
                   <source src="https://rus.hitmotop.com/get/music/20170904/Willie_Nelson_-_On_The_Road_Again_48155595.mp3" type="audio/mpeg">
                 </audio>
               </div>
             </div>
             <div class="col-md-4">
               <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalSelena">
-                <img src="https://avatars.mds.yandex.net/get-entity_search/1589423/1247831627/SUx182" alt="Селена" loading="lazy">
-                <h4 class="h6">Селена</h4>
-                <audio controls class="texas-audio mt-2">
+                <img src="https://avatars.mds.yandex.net/get-entity_search/1589423/1247831627/SUx182" alt="Селена Кинтанилья - королева техано, уроженка Техаса" loading="lazy">
+                <h4>Селена</h4>
+                <p>«Como La Flor»</p>
+                <audio controls class="texas-audio mt-2" preload="none">
                   <source src="https://rus.hitmotop.com/get/music/20170903/Selena_Cristian_Castro_-_Como_la_Flor_48054111.mp3" type="audio/mpeg">
                 </audio>
               </div>
             </div>
             <div class="col-md-4">
               <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalBeyonce">
-                <img src="https://avatars.mds.yandex.net/i?id=2af95f164cffa6d7c62f8368ceccfa9f361d0595-17508343-images-thumbs&n=13" alt="Бейонсе" loading="lazy">
-                <h4 class="h6">Бейонсе</h4>
-                <audio controls class="texas-audio mt-2">
+                <img src="https://avatars.mds.yandex.net/i?id=2af95f164cffa6d7c62f8368ceccfa9f361d0595-17508343-images-thumbs&n=13" alt="Бейонсе - поп-звезда из Хьюстона, Техас" loading="lazy">
+                <h4>Бейонсе</h4>
+                <p>«Texas Hold 'Em»</p>
+                <audio controls class="texas-audio mt-2" preload="none">
                   <source src="https://rus.hitmotop.com/get/music/20250419/Beyonc_-_TEXAS_HOLD_EM_79149312.mp3" type="audio/mpeg">
+                </audio>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalStevieRay">
+                <img src="https://avatars.mds.yandex.net/i?id=f7bc244387df01f7ba6dbdffea4976474f27ea2f-7551636-images-thumbs&n=13" alt="Стиви Рэй Вон - легендарный блюз-гитарист из Далласа" loading="lazy">
+                <h4>Стиви Рэй Вон</h4>
+                <p>«Pride and Joy»</p>
+                <audio controls class="texas-audio mt-2" preload="none">
+                  <source src="https://rus.hitmotop.com/get/music/20170904/Stevie_Ray_Vaughan_-_Pride_And_Joy_48184463.mp3" type="audio/mpeg">
+                </audio>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalWaylon">
+                <img src="https://avatars.mds.yandex.net/i?id=5ebb145fb8eb2a542f8014145b194211da9fa516-5231618-images-thumbs&n=13" alt="Уэйлон Дженнингс - пионер outlaw country из Техаса" loading="lazy">
+                <h4>Уэйлон Дженнингс</h4>
+                <p>«Luckenbach, Texas»</p>
+                <audio controls class="texas-audio mt-2" preload="none">
+                  <source src="https://rus.hitmotop.com/get/music/20170903/Waylon_Jennings_-_Luckenbach_Texas_Back_to_the_Basics_of_Love_48042247.mp3" type="audio/mpeg">
+                </audio>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalZZTop">
+                <img src="https://avatars.mds.yandex.net/i?id=dccb179946e258ae296e5d695ebe399baf42bb88-8972142-images-thumbs&n=13" alt="ZZ Top - техасская рок-группа с бородами" loading="lazy">
+                <h4>ZZ Top</h4>
+                <p>«La Grange»</p>
+                <audio controls class="texas-audio mt-2" preload="none">
+                  <source src="https://rus.hitmotop.com/get/music/20170902/ZZ_Top_-_La_Grange_48014700.mp3" type="audio/mpeg">
                 </audio>
               </div>
             </div>
           </div>
         </div>
         
-        <!-- ЛЮДИ -->
+        <!-- Вкладка ЛЮДИ -->
         <div class="tab-pane fade" id="people">
           <div class="row g-3 g-lg-4">
             <div class="col-6 col-md-3">
               <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalMatthew">
-                <img src="https://avatars.mds.yandex.net/get-entity_search/10783309/1236895169/SUx182" alt="Мэттью Макконахи" loading="lazy">
-                <h5 class="h6">Мэттью Макконахи</h5>
+                <img src="https://avatars.mds.yandex.net/get-entity_search/10783309/1236895169/SUx182" alt="Мэттью Макконахи - актер из Техаса" loading="lazy">
+                <h5 class="h6 h5-md">Мэттью Макконахи</h5>
+                <p class="small">Актер, продюсер</p>
               </div>
             </div>
             <div class="col-6 col-md-3">
               <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalLBJ">
-                <img src="https://avatars.mds.yandex.net/i?id=2daf7ad0e0adf9777fd73a988c47b1c8c8f78a8c-11490366-images-thumbs&n=13" alt="Линдон Джонсон" loading="lazy">
-                <h5 class="h6">Линдон Джонсон</h5>
+                <img src="https://avatars.mds.yandex.net/i?id=2daf7ad0e0adf9777fd73a988c47b1c8c8f78a8c-11490366-images-thumbs&n=13" alt="Линдон Б. Джонсон - 36-й президент США из Техаса" loading="lazy">
+                <h5 class="h6 h5-md">Линдон Джонсон</h5>
+                <p class="small">36-й президент США</p>
               </div>
             </div>
             <div class="col-6 col-md-3">
               <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalHoward">
-                <img src="https://avatars.mds.yandex.net/i?id=41f0e32d97ba43193ada705b71f5ce783f6100cb-7149282-images-thumbs&n=13" alt="Ховард Хьюз" loading="lazy">
-                <h5 class="h6">Ховард Хьюз</h5>
+                <img src="https://avatars.mds.yandex.net/i?id=41f0e32d97ba43193ada705b71f5ce783f6100cb-7149282-images-thumbs&n=13" alt="Ховард Хьюз - авиатор, изобретатель из Хьюстона" loading="lazy">
+                <h5 class="h6 h5-md">Ховард Хьюз</h5>
+                <p class="small">Авиатор, изобретатель</p>
               </div>
             </div>
             <div class="col-6 col-md-3">
               <div class="celebrity-card" data-bs-toggle="modal" data-bs-target="#modalRandy">
-                <img src="https://avatars.mds.yandex.net/i?id=72a65f8b30df47c35f82898fb8b057589469e11a-4591692-images-thumbs&n=13" alt="Ренди Трэвис" loading="lazy">
-                <h5 class="h6">Ренди Трэвис</h5>
+                <img src="https://avatars.mds.yandex.net/i?id=72a65f8b30df47c35f82898fb8b057589469e11a-4591692-images-thumbs&n=13" alt="Ренди Трэвис - певец кантри из Техаса" loading="lazy">
+                <h5 class="h6 h5-md">Ренди Трэвис</h5>
+                <p class="small">Певец кантри</p>
               </div>
             </div>
           </div>
@@ -661,66 +618,315 @@
     </div>
   </div>
 
-  <!-- МОДАЛЬНЫЕ ОКНА (сокращены для краткости, но структура та же) -->
-  <div class="modal fade modal-texas" id="modalName" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">1. Название Техас: история и значение</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <img src="https://avatars.mds.yandex.net/i?id=04efea5b75ad2668ae96ed156388afbf59eec7e0-7543946-images-thumbs&n=13" alt="Техасский флаг" loading="lazy" class="img-fluid">
-          <p class="fw-bold mt-3">Происхождение:</p>
-          <p>Название «Техас» происходит от слова «táysha» из языка индейцев племени каддо, которое означает «друзья» или «союзники». Испанские исследователи адаптировали это слово как «Tejas», а позже англичане преобразовали в «Texas».</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- ================== ВСЕ МОДАЛЬНЫЕ ОКНА ================== -->
+  
+  <!-- Модалка 1: Название -->
+  <div class="modal fade modal-texas" id="modalName" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">1. Название Техас: история и значение</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=04efea5b75ad2668ae96ed156388afbf59eec7e0-7543946-images-thumbs&n=13" class="img-fluid" alt="Техасский флаг на фоне заката, просторы прерии, одинокая звезда" loading="lazy">
+      <p class="fw-bold">Происхождение:</p>
+      <p>Название «Техас» происходит от слова «táysha» из языка индейцев племени каддо, которое означает «друзья» или «союзники». Испанские исследователи адаптировали это слово как «Tejas», а позже англичане преобразовали в «Texas».</p>
+      <p class="fw-bold mt-3">Прозвище «Штат Одинокой звезды»:</p>
+      <p>Флаг с одной звездой был символом Республики Техас с 1836 по 1845 год, когда Техас был независимым государством после отделения от Мексики. Звезда символизирует независимый дух и борьбу за свободу. Даже после вхождения в США Техас сохранил этот символ как напоминание о своей уникальной истории.</p>
+      <p class="fw-bold mt-3">Интересный факт:</p>
+      <p>Техас был единственным штатом США, который вошел в состав Соединенных Штатов как независимая республика, а не как территория.</p>
+    </div></div></div></div>
 
-  <!-- остальные модальные окна (такой же структуры, но для краткости не дублирую все) -->
-  <!-- В реальном коде нужно добавить все модалки из оригинала с адаптивными классами -->
+  <!-- Модалка 2: Девиз -->
+  <div class="modal fade modal-texas" id="modalMotto" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">2. Девиз Техаса: «Friendship»</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=19701fd3d16f96f39ae34b0e7e577f77669a3e72-8175992-images-thumbs&n=13" class="img-fluid" alt="Флаг Техаса крупным планом, текстура ткани, синяя полоса со звездой" loading="lazy">
+      <p>Официальный девиз штата — «Friendship» (Дружба) — был принят в 1930 году. Он напрямую связан с происхождением названия штата от слова «táysha» (друзья) на языке каддо.</p>
+      <p class="fw-bold mt-3">Исторический контекст:</p>
+      <p>Девиз подчеркивает мирные отношения между первыми европейскими поселенцами и коренными индейскими племенами. Также он отражает дух сотрудничества между мексиканцами, техасцами и американцами в период становления региона.</p>
+      <p class="fw-bold mt-3">Где используется:</p>
+      <p>Девиз можно найти на официальной печати штата Техас и на флаге Техаса (хотя сам девиз на флаге не написан, он символически присутствует через значение названия).</p>
+    </div></div></div></div>
 
-  <!-- Футер -->
-  <footer class="footer-modern py-4 py-lg-5">
+  <!-- Модалка 3: Дерево Пекан -->
+  <div class="modal fade modal-texas" id="modalTree" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">3. Дерево Пекан (Carya illinoinensis)</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=5a0f261b2754b080052c2453c5ef8b2db3b22d95-8186614-images-thumbs&n=13" class="img-fluid" alt="Орехи пекан на дереве, крупный план, зеленые скорлупы" loading="lazy">
+      <p>Орех пекан был объявлен официальным деревом штата Техас в 1919 году. Это решение было принято благодаря огромной экономической и культурной значимости дерева для региона.</p>
+      <p class="fw-bold mt-3">Факты о пекане в Техасе:</p>
+      <ul>
+        <li>Техас производит около 30% всех орехов пекан в США, уступая только Джорджии.</li>
+        <li>Пекан — единственный крупный орех, который произрастает в Северной Америке естественным образом.</li>
+        <li>Дерево пекан может жить до 300 лет и достигать высоты 40 метров.</li>
+        <li>Индейцы использовали орехи пекан задолго до прихода европейцев — они толкли их и добавляли в похлебки.</li>
+        <li>Пекан — официальный десерт Техаса (пекaновый пирог — любимое лакомство).</li>
+      </ul>
+    </div></div></div></div>
+
+  <!-- Модалка 4: Животное -->
+  <div class="modal fade modal-texas" id="modalAnimal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">4. Официальные животные Техаса</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=a89110d8f71df37ad6fe3c0a77ec47947e6b8354-3710093-images-thumbs&n=13" class="img-fluid" alt="Девятипоясный броненосец в пустыне" loading="lazy">
+      <p class="fw-bold">Девятипоясный броненосец (Dasypus novemcinctus)</p>
+      <p>Стал официальным мелким млекопитающим штата в 1995 году. Это уникальное животное встречается по всему Техасу и является живым ископаемым — его предки жили еще во времена динозавров.</p>
+      <p class="fw-bold mt-2">Длиннорогий техасский бык (Texas Longhorn)</p>
+      <p>Официальное крупное млекопитающее. Эта порода возникла от коров, завезенных испанцами еще в XVI веке. Длинные рога (до 2 метров в размахе) делают их символом ковбойского Запада. Техасские длиннорогие невероятно выносливы и могут выживать в самых суровых условиях.</p>
+    </div></div></div></div>
+
+  <!-- Модалка 5: Символика -->
+  <div class="modal fade modal-texas" id="modalSymbols" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">5. Официальные символы Техаса</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=c4ccfa068459616d0af9b1d1be6002ff73294618-5234838-images-thumbs&n=13" class="img-fluid" alt="Поле голубых люпинов" loading="lazy">
+      <ul>
+        <li><strong>Цветок:</strong> Голубой люпин (Bluebonnet) — с 1901 года. Каждую весну поля Техаса покрываются синим ковром.</li>
+        <li><strong>Птица:</strong> Северный пересмешник (Northern Mockingbird) — с 1927 года. Известен способностью подражать другим птицам.</li>
+        <li><strong>Камень:</strong> Нефрит (Petrified Palmwood) — окаменелая пальма, найденная в Техасе.</li>
+        <li><strong>Блюдо:</strong> Чили кон карне — официальное блюдо с 1977 года.</li>
+        <li><strong>Насекомое:</strong> Бабочка-монарх (Danaus plexippus) — с 1995 года.</li>
+        <li><strong>Динозавр:</strong> Плезиозавр (Paluxysaurus jonesi) — с 2009 года.</li>
+        <li><strong>Напиток:</strong> Текила? Нет, официального нет, но техасцы любят Dr Pepper (изобретен в Техасе).</li>
+      </ul>
+    </div></div></div></div>
+
+  <!-- Модалка 6: Факты -->
+  <div class="modal fade modal-texas" id="modalFacts" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">6. Интересные факты о Техасе</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=2bc87264d193b0d1c205d8108b13dd872b3d4874-12822923-images-thumbs&n=13" class="img-fluid" alt="Ковбой на лошади" loading="lazy">
+      <ol>
+        <li>Техас был независимой республикой с 1836 по 1845 год. У него был свой флаг, валюта, армия и даже посольства в Лондоне и Париже.</li>
+        <li>Шесть флагов правили Техасом: Испания, Франция, Мексика, Республика Техас, США и Конфедеративные Штаты Америки.</li>
+        <li>Слово «maverick» (упрямец, индивидуалист) произошло от техасца Сэмюэля Мэверика, который не клеймил своих быков.</li>
+        <li>В Остине под мостом Конгресс-авеню живет самая большая городская колония летучих мышей в мире — 1.5 миллиона особей.</li>
+        <li>Техас больше, чем любая страна Западной Европы. Он больше Германии, Англии и Франции вместе взятых.</li>
+        <li>В Техасе находится ранчо «Кинг» (King Ranch) — крупнейшее ранчо в США, больше штата Род-Айленд.</li>
+        <li>Доктор Пеппер (Dr Pepper) был изобретен в Техасе в 1885 году (в городе Уэйко).</li>
+      </ol>
+    </div></div></div></div>
+
+  <!-- Модалка 7: Площадь -->
+  <div class="modal fade modal-texas" id="modalArea" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">7. Площадь Техаса</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=3a3fc83b78992667dc585820467fdf4d_sr-4012459-images-thumbs&n=13" class="img-fluid" alt="Просторы Техаса, прерия, горизонт" loading="lazy">
+      <p><strong>Площадь:</strong> 695 662 км²</p>
+      <p><strong>Место в США:</strong> 2-е (после Аляски)</p>
+      <p><strong>Сравнение:</strong> Техас больше Германии (357 386 км²) и Англии (130 279 км²) вместе взятых. Если бы Техас был отдельной страной, он занимал бы 40-е место в мире по площади (между Замбией и Чили).</p>
+      <p><strong>Протяженность:</strong> С востока на запад — около 1200 км, с севера на юг — около 1300 км.</p>
+    </div></div></div></div>
+
+  <!-- Модалки для природы (8) -->
+  <div class="modal fade modal-texas" id="modalRelief" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">8.1 Рельеф Техаса</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=c86846009f4c6b641695ad75a0875173d347b7cd-5233450-images-thumbs&n=13" class="img-fluid" alt="Горы Гуадалупе" loading="lazy">
+      <p>Техас разделен на 4 основные физико-географические области:</p>
+      <ul>
+        <li><strong>Прибрежная равнина (Gulf Coastal Plain):</strong> занимает восточную и южную часть штата, включает болота, прерии и пляжи.</li>
+        <li><strong>Внутренние низменности (Interior Lowlands):</strong> холмистая местность к северу от Остина.</li>
+        <li><strong>Великие равнины (Great Plains):</strong> обширные равнины на западе, включая Llano Estacado.</li>
+        <li><strong>Горы и бассейны (Basin and Range):</strong> западная часть Техаса с горами, включая <strong>пик Гуадалупе (Guadalupe Peak)</strong> — высочайшая точка штата (2667 метров).</li>
+      </ul>
+    </div></div></div></div>
+
+  <div class="modal fade modal-texas" id="modalClimate" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">8.2 Климат Техаса</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=0d8bb5bf257b2bb201cec15c0d576568a816d3a1-5220623-images-thumbs&n=13" class="img-fluid" alt="Гроза в Техасе" loading="lazy">
+      <p>Из-за огромных размеров климат варьируется от засушливого пустынного на западе до влажного субтропического на востоке.</p>
+      <ul>
+        <li><strong>Восточный Техас:</strong> влажный, много осадков, иногда ураганы с Мексиканского залива.</li>
+        <li><strong>Центральный Техас:</strong> умеренный, известен торнадо (Аллея торнадо).</li>
+        <li><strong>Западный Техас:</strong> пустынный, жаркий днем и холодный ночью.</li>
+        <li><strong>Рекорды:</strong> Самая высокая температура +49°C (Сеймур, 1936), самая низкая -31°C (Тулия, 1933).</li>
+      </ul>
+    </div></div></div></div>
+
+  <div class="modal fade modal-texas" id="modalWater" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">8.3 Водные ресурсы</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=e4df30916bcfa35bb0e754433a23b9d5bbc0ac40-6235668-images-thumbs&n=13" class="img-fluid" alt="Река Рио-Гранде" loading="lazy">
+      <p><strong>Основные реки:</strong></p>
+      <ul>
+        <li>Рио-Гранде (Rio Grande) — граница с Мексикой, длина 3051 км</li>
+        <li>Колорадо (Colorado River) — техасская, не путать с Аризонской</li>
+        <li>Бразос (Brazos River) — самая длинная река полностью в Техасе</li>
+        <li>Ред-Ривер (Red River) — граница с Оклахомой</li>
+      </ul>
+      <p>В Техасе более 200 водохранилищ и озер, крупнейшее — озеро Толедо-Бенд.</p>
+    </div></div></div></div>
+
+  <div class="modal fade modal-texas" id="modalEco" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">8.4 Экосистемы и биоразнообразие</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=5d95e92bc169832bf687f4c4f372a9621ed3db46-9709143-images-thumbs&n=13" class="img-fluid" alt="Пустыня с кактусами" loading="lazy">
+      <p>В Техасе представлены 10 природных зон — от пустынь до сосновых лесов и болот.</p>
+      <ul>
+        <li><strong>Пайни-Вудс (Piney Woods):</strong> сосновые леса на востоке</li>
+        <li><strong>Прерии:</strong> черноземные равнины</li>
+        <li><strong>Холмы (Texas Hill Country):</strong> дубовые леса, источники</li>
+        <li><strong>Пустыни Чиуауа:</strong> кактусы, юкка, агава</li>
+        <li><strong>Побережье:</strong> мангровые заросли, дюны</li>
+      </ul>
+      <p>Животный мир: ягуары (редко), оцелоты, пумы, койоты, броненосцы, белохвостые олени, пекари, более 600 видов птиц.</p>
+    </div></div></div></div>
+
+  <!-- Модалка 9: Ресурсы -->
+  <div class="modal fade modal-texas" id="modalResources" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5 class="modal-title">9. Природные ресурсы Техаса</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body">
+      <img src="https://avatars.mds.yandex.net/i?id=838b5e9b475c4ffbd41ff70c17087f1b72df5588-5287068-images-thumbs&n=13" class="img-fluid" alt="Нефтяная вышка" loading="lazy">
+      <p>Техас — лидер США по добыче многих полезных ископаемых:</p>
+      <ul>
+        <li><strong>Нефть:</strong> Пермский бассейн дает 5,5 млн баррелей в день (40% всей нефти США).</li>
+        <li><strong>Природный газ:</strong> 25% добычи США.</li>
+        <li><strong>Гелий:</strong> Техас — один из крупнейших производителей гелия в мире (хранилище в Амарилло).</li>
+        <li><strong>Сера:</strong> добывается методом Фраша.</li>
+        <li><strong>Соль:</strong> огромные соляные купола.</li>
+        <li><strong>Древесина:</strong> сосна, дуб.</li>
+        <li><strong>Ветряная энергия:</strong> Техас производит больше ветряной электроэнергии, чем любой другой штат.</li>
+      </ul>
+    </div></div></div></div>
+
+  <!-- Модалки для городов -->
+  <div class="modal fade modal-texas" id="modalHouston" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Хьюстон (Houston)</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=e5e3f3ac78c9ea8670e8f6a3b4e08f2426104ae3-4884623-images-thumbs&n=13" class="w-100" alt="Хьюстон даунтаун" loading="lazy"><p>Крупнейший город Техаса (2.3 млн). Космический центр NASA, порт, энергетика.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalAustin" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Остин (Austin)</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=1e6817e5bd0c1f4c95216246f0bf118d82bbb4d1-4011124-images-thumbs&n=13" class="w-100" alt="Капитолий Остина" loading="lazy"><p>Столица штата, 1 млн жителей. «Силиконовые холмы», музыкальная столица мира (SXSW).</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalDallas" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Даллас (Dallas)</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=42709a02c384ea4c483d5c1edfea4d860d5685e5-4343836-images-thumbs&n=13" class="w-100" alt="Даллас ночью" loading="lazy"><p>1.3 млн, финансовый центр, Даллас Ковбойз, JFK-мемориал.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalSanAntonio" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Сан-Антонио (San Antonio)</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=40895744536cd2e04caecfd7f60b758308da9d87-5273084-images-thumbs&n=13" class="w-100" alt="Аламо" loading="lazy"><p>1.5 млн, Аламо, River Walk, миссии.</p></div></div></div></div>
+
+  <!-- Модалки для достопримечательностей -->
+  <div class="modal fade modal-texas" id="modalAlamo" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Аламо (Alamo)</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=f6b13bc57857e38320e421ef4be1d0fae822ff9a-7612965-images-thumbs&n=13" class="w-100" alt="Аламо" loading="lazy"><p>Миссия и крепость в Сан-Антонио, место битвы 1836 года за независимость Техаса. "Remember the Alamo!" — символ героизма.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalBigBend" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Национальный парк Биг-Бенд</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=105d44a638a31853b7811c331befea913bab69cb-4055782-images-thumbs&n=13" class="w-100" alt="Биг-Бенд" loading="lazy"><p>Огромный парк на границе с Мексикой. Каньоны, пустыня, горячие источники, биоразнообразие.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalNASA" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Космический центр Хьюстона</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=8a6a035ea9322d743e4ab22c963493b497d989ee-5288655-images-thumbs&n=13" class="w-100" alt="NASA" loading="lazy"><p>Центр управления полетами NASA, ракета Saturn V, шаттл Independence.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalGuadalupe" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Горы Гуадалупе</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=02557a1bc32fd1c180df4aba92b5c81575001465-5870594-images-thumbs&n=13" class="w-100" alt="Горы Гуадалупе" loading="lazy"><p>Высочайшая точка Техаса (2667 м). Национальный парк с уникальной экосистемой.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalCapitol" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Капитолий Техаса</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=71cb6ab6176887b45e947882ed0789bb19a96152-15436088-images-thumbs&n=13" class="w-100" alt="Капитолий" loading="lazy"><p>Здание правительства штата в Остине. Выше Капитолия США. Построен из розового гранита.</p></div></div></div></div>
+
+  <!-- Модалки 12-14 -->
+  <div class="modal fade modal-texas" id="modalIndustry" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>12. Промышленность Техаса</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=93f5b33ab69a9f554eccd65ea864e056dafe0a2b-5238639-images-thumbs&n=13" class="w-100" alt="Нефтезавод" loading="lazy"><p><strong>Ключевые отрасли:</strong> нефтехимия (крупнейшие НПЗ в Порт-Артур), IT (Остин, Даллас), аэрокосмос (SpaceX в Бока-Чика, Lockheed Martin), сельское хозяйство (хлопок, скот).</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalPartners" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>13. Партнеры Техаса</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=9023dc8a16232d26c6f4375f1b96d454f8e1b493-5238557-images-thumbs&n=13" class="w-100" alt="Порт" loading="lazy"><p><strong>Внешние:</strong> Мексика (крупнейший торговый партнер, $250 млрд), Канада, Китай, Бразилия. <strong>Внутренние:</strong> Луизиана, Оклахома, Нью-Мексико. Порт Хьюстона — №1 по экспорту.</p></div></div></div></div>
+  
+  <!-- Модалки для еды -->
+  <div class="modal fade modal-texas" id="modalFoodBrisket" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Техасская грудинка (Beef Brisket)</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=e871ca13107525b1055dec6ce160d67452da1dcc-4576108-images-thumbs&n=13" class="w-100" alt="Грудинка" loading="lazy"><p>Король техасского BBQ. Готовится 12-18 часов на медленном дыму из дуба или пекана. Секрет в простой приправе: соль и перец крупного помола (т.н. "Dalmatian rub"). Подается с соусом на столе, чтобы не перебивать вкус мяса.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalFoodRibs" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Техасские ребрышки</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=316076152175d4512c6c0278044f6495d12be590-5879286-images-thumbs&n=13" class="w-100" alt="Ребрышки" loading="lazy"><p>Свиные ребра (чаще всего "Saint Louis style") с сухой обтиркой из паприки, чеснока, перца и тростникового сахара. Коптятся 5-6 часов до состояния, когда мясо само отходит от кости.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalFoodChili" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Чили кон карне</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=43a4ef976e96073bb21a0709ff8e93f83b9cd969-10499998-images-thumbs&n=13" class="w-100" alt="Чили" loading="lazy"><p>Официальное блюдо Техаса с 1977 года. Настоящий техасский чили готовится без бобов (это ересь!), только мясо (говядина), сушеные перцы чили, тмин и чеснок. Иногда добавляют пиво или кофе для глубины вкуса.</p></div></div></div></div>
+  
+  <!-- Модалки для музыкантов -->
+  <div class="modal fade modal-texas" id="modalWillie" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Уилли Нельсон</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=34a5e30ba8803267caa51d03818b2a93d4301122-10452512-images-thumbs&n=13" class="w-100" alt="Уилли Нельсон" loading="lazy"><p>Легенда кантри, родился в 1933 году в Техасе. Автор хитов "On the Road Again", "Always on My Mind". Активист, филантроп, ежегодно проводит фестиваль "Farm Aid". Живет в Остине.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalSelena" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Селена Кинтанилья</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=4e74b96c6cf012234129bd73eddf93b09731ace5-4237727-images-thumbs&n=13" class="w-100" alt="Селена" loading="lazy"><p>"Королева техано" (1971-1995). Родилась в Лейк-Джексоне, Техас. Продала более 30 млн записей. Ее музыка смешивала мексиканские ритмы с попом и R&B. Фильм о ней с Дженнифер Лопес.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalBeyonce" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Бейонсе Ноулз</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=14bde2709a90a3f00e2cde4ead35d84748fd7c06-7083384-images-thumbs&n=13" class="w-100" alt="Бейонсе" loading="lazy"><p>Родилась в Хьюстоне в 1981 году. 32 Грэмми, одна из самых продаваемых артисток в истории. Песня "Texas Hold 'Em" (2024) стала гимном штата.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalStevieRay" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Стиви Рэй Вон</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=8212b98d2b2caa20059930f7af801e0990ecb998-4566892-images-thumbs&n=13" class="w-100" alt="Стиви Рэй Вон" loading="lazy"><p>Легендарный блюз-гитарист (1954-1990) из Далласа. Возродил интерес к блюзу в 80-х. Хиты "Pride and Joy", "Texas Flood". Погиб в авиакатастрофе.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalWaylon" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Уэйлон Дженнингс</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=c132c71691a49d0471582093b2767b6e7f5bec25-5855238-images-thumbs&n=13" class="w-100" alt="Уэйлон Дженнингс" loading="lazy"><p>Пионер движения "outlaw country" (1937-2002). Хит "Luckenbach, Texas" — ода маленькому техасскому городку.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalZZTop" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>ZZ Top</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=8980de52669dfea6c78a0b32ec1cad93f7eba3c15b7c891a-4615765-images-thumbs&n=13" class="w-100" alt="ZZ Top" loading="lazy"><p>Рок-группа из Хьюстона, основана в 1969. Их стиль — смесь блюза, рока и буги. Хиты "La Grange", "Sharp Dressed Man". Известны длинными бородами.</p></div></div></div></div>
+  
+  <!-- Модалки для знаменитостей -->
+  <div class="modal fade modal-texas" id="modalMatthew" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Мэттью Макконахи</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=1718aa7fd407c91bb994b37817603ade8642e068-12928931-images-thumbs&n=13" class="w-100" alt="Мэттью Макконахи" loading="lazy"><p>Актер, продюсер, родился в 1969 в Техасе. Оскар за роль в "Далласском клубе покупателей". Живет в Остине, преподает в университете Техаса.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalLBJ" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Линдон Б. Джонсон</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=f344d5a161c68ff3d33518c306a8fadca0ea9198-4592676-images-thumbs&n=13" class="w-100" alt="Линдон Джонсон" loading="lazy"><p>36-й президент США (1963-1969). Родился в Техасе. Инициировал программы "Великое общество", подписал закон о гражданских правах.</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalHoward" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Ховард Хьюз</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=1a0884caab6a086c2543a04c11d086b2060eb8f578625247-12445046-images-thumbs&n=13" class="w-100" alt="Ховард Хьюз" loading="lazy"><p>Авиатор, изобретатель, режиссер (1905-1976). Родился в Хьюстоне. Один из самых богатых людей своего времени, прототип фильма "Авиатор".</p></div></div></div></div>
+  <div class="modal fade modal-texas" id="modalRandy" tabindex="-1"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content">
+    <div class="modal-header"><h5>Ренди Трэвис</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><img src="https://avatars.mds.yandex.net/i?id=c02a2dfdf7d7fa73e1ee0217a4b7187c69404b91-3101375-images-thumbs&n=13" class="w-100" alt="Ренди Трэвис" loading="lazy"><p>Певец кантри, родился в 1959 в Северной Каролине, но живет в Техасе. Хиты "Forever and Ever, Amen", "Deeper Than the Holler".</p></div></div></div></div>
+
+  <!-- Футер 2026 Коннов Артём -->
+  <footer class="footer-modern py-5">
     <div class="container text-center">
-      <i class="bi bi-star-fill fs-1" style="color:#bf2e1c;"></i>
-      <i class="bi bi-star-fill fs-2 mx-2 mx-lg-3" style="color:#bf2e1c;"></i>
-      <i class="bi bi-star-fill fs-1" style="color:#bf2e1c;"></i>
-      <p class="mt-4 fs-5 fs-lg-3 fw-light">© 2026 Коннов Артём · эстетика одинокой звезды</p>
+      <i class="bi bi-star-fill fs-1" style="color:#bf2e1c;"></i><i class="bi bi-star-fill fs-2 mx-3" style="color:#bf2e1c;"></i><i class="bi bi-star-fill fs-1" style="color:#bf2e1c;"></i>
+      <p class="mt-4 fs-3 fw-light">© 2026 Коннов Артём · эстетика одинокой звезды</p>
     </div>
   </footer>
 
-  <!-- скрипты -->
+  <!-- скрипты - ВАЖНО: правильный порядок -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    AOS.init({ 
-      duration: 800, 
-      once: true, 
-      mirror: false,
-      disable: window.innerWidth < 768 // отключаем на мобильных для производительности
-    });
-    
-    new Swiper('.mySwiper', {
-      autoplay: { delay: 3000 }, 
-      loop: true, 
-      pagination: { el: '.swiper-pagination' },
-      navigation: { 
-        nextEl: '.swiper-button-next', 
-        prevEl: '.swiper-button-prev' 
+    // Ждем полной загрузки DOM
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // Инициализация AOS
+      if (typeof AOS !== 'undefined') {
+        AOS.init({ 
+          duration: 800, 
+          once: false, 
+          mirror: true,
+          disable: window.innerWidth < 768 // Отключаем на мобильных для производительности
+        });
+      } else {
+        console.warn('AOS not loaded');
       }
-    });
-    
-    // Закрытие модалок по клику вне
-    document.querySelectorAll('.modal').forEach(modal => {
-      modal.addEventListener('click', function(e) {
-        if (e.target === this) {
-          bootstrap.Modal.getInstance(this).hide();
-        }
+      
+      // Инициализация Swiper
+      if (typeof Swiper !== 'undefined') {
+        const swiper = new Swiper('.mySwiper', {
+          autoplay: { delay: 3000, disableOnInteraction: false },
+          loop: true,
+          pagination: { el: '.swiper-pagination', clickable: true },
+          navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+          grabCursor: true,
+          breakpoints: {
+            320: { slidesPerView: 1, spaceBetween: 10 },
+            768: { slidesPerView: 1, spaceBetween: 20 }
+          }
+        });
+      } else {
+        console.warn('Swiper not loaded');
+      }
+      
+      // Закрытие мобильного меню после клика
+      const navbarToggler = document.querySelector('.navbar-toggler');
+      const navbarCollapse = document.getElementById('nav');
+      
+      if (navbarToggler && navbarCollapse) {
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            if (navbarCollapse.classList.contains('show')) {
+              navbarToggler.click();
+            }
+          });
+        });
+      }
+      
+      // Обработка ошибок загрузки аудио
+      document.querySelectorAll('audio').forEach(audio => {
+        audio.addEventListener('error', (e) => {
+          console.log('Аудио не загрузилось (возможно, ссылка устарела)');
+          // Создаем заглушку
+          const parent = audio.parentNode;
+          const errorMsg = document.createElement('p');
+          errorMsg.className = 'text-muted small';
+          errorMsg.innerHTML = '🎵 Песня временно недоступна';
+          if (parent && !parent.querySelector('.text-muted')) {
+            parent.appendChild(errorMsg);
+          }
+        });
       });
+      
+      // Проверка наличия Bootstrap модалок
+      if (typeof bootstrap === 'undefined') {
+        console.error('Bootstrap not loaded!');
+      }
     });
   </script>
 </body>
-            </html>
+                                                                                                                </html>
